@@ -98,8 +98,8 @@ export default function SendMessage() {
   };
 
   return (
-    <div className="container mx-auto my-8 p-6 bg-white rounded max-w-4xl">
-      <h1 className="text-4xl font-bold mb-6 text-center">
+    <div className="container mx-auto my-8 px-4 md:px-8 lg:px-12 py-6 bg-white rounded max-w-screen-lg">
+      <h1 className="text-2xl md:text-4xl font-bold mb-6 text-center">
         Public Profile Link
       </h1>
       <Form {...form}>
@@ -109,11 +109,13 @@ export default function SendMessage() {
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Send Anonymous Message to @{username}</FormLabel>
+                <FormLabel className="text-sm md:text-base">
+                  Send Anonymous Message to @{username}
+                </FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Write your anonymous message here"
-                    className="resize-none"
+                    className="resize-none text-sm md:text-base"
                     {...field}
                   />
                 </FormControl>
@@ -128,7 +130,11 @@ export default function SendMessage() {
                 Please wait
               </Button>
             ) : (
-              <Button type="submit" disabled={isLoading || !messageContent}>
+              <Button
+                type="submit"
+                className="text-sm md:text-base"
+                disabled={isLoading || !messageContent}
+              >
                 Send It
               </Button>
             )}
@@ -140,26 +146,30 @@ export default function SendMessage() {
         <div className="space-y-2">
           <Button
             onClick={fetchSuggestedMessages}
-            className="my-4"
+            className="my-4 w-full md:w-auto"
             disabled={isSuggestLoading}
           >
             Suggest Messages
           </Button>
-          <p>Click on any message below to select it.</p>
+          <p className="text-sm md:text-base text-center">
+            Click on any message below to select it.
+          </p>
         </div>
         <Card>
           <CardHeader>
-            <h3 className="text-xl font-semibold">Messages</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-center">
+              Messages
+            </h3>
           </CardHeader>
-          <CardContent className="flex flex-col space-y-4">
+          <CardContent className="flex flex-wrap gap-4 justify-center">
             {error ? (
-              <p className="text-red-500">{error.message}</p>
+              <p className="text-red-500 text-sm md:text-base">{error.message}</p>
             ) : (
               parseStringMessages(completion).map((message, index) => (
                 <Button
                   key={index}
                   variant="outline"
-                  className="mb-2"
+                  className="mb-2 w-full md:w-auto max-w-full whitespace-normal break-words text-left"
                   onClick={() => handleMessageClick(message)}
                 >
                   {message}
@@ -167,15 +177,19 @@ export default function SendMessage() {
               ))
             )}
           </CardContent>
+
         </Card>
       </div>
       <Separator className="my-6" />
       <div className="text-center">
-        <div className="mb-4">Get Your Message Board</div>
+        <div className="mb-4 text-sm md:text-base">
+          Get Your Message Board
+        </div>
         <Link href={'/sign-up'}>
-          <Button>Create Your Account</Button>
+          <Button className="text-sm md:text-base">Create Your Account</Button>
         </Link>
       </div>
     </div>
   );
+
 }

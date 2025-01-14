@@ -63,6 +63,9 @@ const page = () => {
     <div className="flex justify-center items-center min-h-screen bg-gray-800">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
+          <Link href='/' className="text-sm hover:underline hover:text-black text-pink-700 mb-2">
+            <p> &lt; Back to Home </p>
+          </Link>
           <h1 className="text-4xl font-semibold tracking-tight lg:text-5xl mb-6 text-pink-700">
             Anonymous
           </h1>
