@@ -3,7 +3,7 @@
 import React from 'react';
 import axios, { AxiosError } from 'axios';
 import dayjs from 'dayjs';
-// import { X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { Message } from '@/model/User';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -15,9 +15,9 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  // AlertDialogTrigger,
+  AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-// import { Button } from './ui/button';
+import { Button } from './ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { ApiResponse } from '@/types/ApiResponse';
 
@@ -56,11 +56,11 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
         <div className="flex justify-between items-center">
           <CardTitle>{message.content}</CardTitle>
           <AlertDialog>
-            {/* <AlertDialogTrigger asChild>
+            <AlertDialogTrigger asChild>
               <Button variant='destructive'>
                 <X className="w-5 h-5" />
               </Button>
-            </AlertDialogTrigger> */}
+            </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
