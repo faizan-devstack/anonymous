@@ -3,9 +3,9 @@ import { authOptions } from "../../auth/[...nextauth]/options";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 import { User } from "next-auth";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE({ params }: { params: Promise<{ messageid: string }> }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ messageid: string }> }) {
     const { messageid } = await params;
     await dbConnect();
 
