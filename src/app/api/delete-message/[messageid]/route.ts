@@ -3,18 +3,17 @@ import { authOptions } from "../../auth/[...nextauth]/options";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 import { User } from "next-auth"
-import { NextRequest } from "next/server";
+import { NextResponse } from 'next/server';
 
-
-export async function DELETE(request: NextRequest, {params}: {params: {messageid: string}}) {
-    const messageId = params.messageid
+export async function DELETE(req: Request, { params }: { params: { messageId: string } }) {
+  const { messageId } = params;
     await dbConnect()
 
     const session = await getServerSession(authOptions)
     const user: User = session?.user as User
 
     if (!session || !session.user) {
-        return Response.json(
+        return NextResponse.json(
             {
                 success: false,
                 message: "Not Authenticated"
@@ -28,7 +27,7 @@ export async function DELETE(request: NextRequest, {params}: {params: {messageid
             {$pull: {messages: {_id: messageId}}}
         )
         if(updateResult.modifiedCount == 0){
-            return Response.json(
+            return NextResponse.json(
                 {
                     success: false,
                     message: "Message not found or alredy deleted"
@@ -37,7 +36,7 @@ export async function DELETE(request: NextRequest, {params}: {params: {messageid
             )
         }
 
-        return Response.json(
+        return NextResponse.json(
             {
                 success: true,
                 message: "Message deleted sucessfully"
@@ -46,7 +45,7 @@ export async function DELETE(request: NextRequest, {params}: {params: {messageid
         )
     } catch (error) {
         console.log("Error in delete message route")
-        return Response.json(
+        return NextResponse.json(
             {
                 success: false,
                 message: "Error deleting message"
