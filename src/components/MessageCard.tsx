@@ -23,7 +23,7 @@ import { ApiResponse } from '@/types/ApiResponse';
 
 type MessageCardProps = {
   message: Message;
-  onMessageDelete: (messageId: string) => void;
+  onMessageDelete: (messageid: string) => void;
 };
 
 export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
