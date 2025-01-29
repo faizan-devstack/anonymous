@@ -1,3 +1,8 @@
+## Login to view
+Email: faizan.devstack@gmail.com, password: 123456
+***
+***
+***
 # Next.js Full-Stack AI-Powered Application  
 
 ## 📌 Overview  
